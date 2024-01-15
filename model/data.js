@@ -21,4 +21,4 @@ const dataSchema = new Schema({
   likelihood: Number
 });
 
-module.exports = mongoose.model("Data", dataSchema);
+module.exports = mongoose.model("Datas", dataSchema);

@@ -1,0 +1,28 @@
+version: '2.20.2'
+services:
+  backend:
+    build:
+      dockerfile: dockerfile
+    container_name: "backend-app"
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/mydb
+  frontend:
+    container_name: "frontend-app"
+    build:
+      dockerfile: app.dockerfile
+    ports:
+      - "5173:5173"
+    links:
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: "mongo-app"
+    ports:
+      - "27017:27017"
